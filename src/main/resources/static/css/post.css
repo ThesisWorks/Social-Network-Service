@@ -13,6 +13,9 @@ body, h1, p {
 
 .header {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -41,6 +44,12 @@ p {
     text-align: center;
 }
 
+#postContent {
+    width: 80%; /* textarea 너비 조정 */
+    resize: vertical; /* 사용자가 textarea 크기를 조절할 수 있게 함 */
+}
+
 #editableTitle:focus {
     border: 1px solid #666; /* 편집 중임을 나타내기 위한 스타일 */
 }
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새로 작성</title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+<div class="container">
+    <form action="/board/post" method="post" enctype="multipart/form-data">
+        <div class="header">
+            <input type="text" id="editableTitle" value="" name="title">
+            <textarea id="postContent" rows="10" placeholder="게시글을 작성해주세요..." name="content"></textarea>
+            <button type="submit" id="createButton">게시</button>
+        </div>
+    </form>
+</div>
+<script src="/js/post.js"></script>
+</body>
+</html>
