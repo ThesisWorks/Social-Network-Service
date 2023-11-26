@@ -17,17 +17,17 @@ public class BoardEntity extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
 
     @Column(nullable = false)
     private String title;
 
-    public static BoardEntity toSaveEntity(BoardDto boardDto) {
+    public static BoardEntity toSaveEntity(BoardDto boardDto, UserEntity user) {
         BoardEntity boardEntity = new BoardEntity();
-
         boardEntity.setContent(boardDto.getContent());
-        boardEntity.setUserId("root");
+        boardEntity.setUser(user);
         boardEntity.setTitle(boardDto.getTitle());
 
         return boardEntity;

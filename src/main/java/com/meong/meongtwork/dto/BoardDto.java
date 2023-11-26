@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class BoardDto {
     private Long id;
     private String content;
-    private String userId;
+    private Long userId;
     private String title;
     private LocalDateTime boardCreatedTime;
     private LocalDateTime boardUpdatedTime;
