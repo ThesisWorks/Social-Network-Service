@@ -17,14 +17,22 @@ public class BoardService {
         boardRepository.save(boardEntity);
     }
 
-    public BoardEntity findByIdWithOwner(Long id, Long ownerId) {
+    public BoardEntity findByIdWithOwner(Long id, Long loginUserId) {
         BoardEntity boardEntity = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
 
-        if (!boardEntity.getUser().getId().equals(ownerId)) {
+        if (!boardEntity.getUser().getId().equals(loginUserId)) {
             throw new IllegalArgumentException("해당 게시글에 대한 권한이 없습니다.");
         }
 
         return boardEntity;
+    }
+
+    public void update(BoardDto boardDto, Long loginUserId) {
+        BoardEntity boardEntity = findByIdWithOwner(boardDto.getId(), loginUserId);
+        boardEntity.setContent(boardDto.getContent());
+        boardEntity.setTitle(boardDto.getTitle());
+
+        boardRepository.save(boardEntity);
     }
 }

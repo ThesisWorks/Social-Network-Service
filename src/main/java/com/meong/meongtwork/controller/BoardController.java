@@ -40,4 +40,12 @@ public class BoardController {
         model.addAttribute("board", boardService.findByIdWithOwner(id, user.getId()));
         return "board/edit";
     }
+
+    @PostMapping("/board/edit")
+    public String editBoard(@ModelAttribute BoardDto boardDto, Principal principal) {
+        UserEntity user = userDetailService.loadUserByUsername(principal.getName());
+
+        boardService.update(boardDto, user.getId());
+        return "redirect:/home";
+    }
 }
