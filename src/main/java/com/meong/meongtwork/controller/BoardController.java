@@ -4,11 +4,12 @@ import com.meong.meongtwork.dto.BoardDto;
 import com.meong.meongtwork.entity.UserEntity;
 import com.meong.meongtwork.service.BoardService;
 import com.meong.meongtwork.service.UserDetailService;
-import com.meong.meongtwork.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -21,16 +22,22 @@ public class BoardController {
 
     @GetMapping("/board/post")
     public String board() {
-        return "post";
+        return "board/post";
     }
 
     @PostMapping("/board/post")
     public String postBoard(@ModelAttribute BoardDto boardDto, Principal principal) {
-        System.out.println("boardDTO = " + boardDto);
-
         UserEntity user = userDetailService.loadUserByUsername(principal.getName());
 
         boardService.save(boardDto, user);
         return "home";
+    }
+
+    @GetMapping("/board/edit/{id}")
+    public String editBoard(@PathVariable("id") Long id, Model model, Principal principal) {
+        UserEntity user = userDetailService.loadUserByUsername(principal.getName());
+
+        model.addAttribute("board", boardService.findByIdWithOwner(id, user.getId()));
+        return "board/edit";
     }
 }
