@@ -17,6 +17,11 @@ public class BoardService {
         boardRepository.save(boardEntity);
     }
 
+    public BoardEntity findById(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
+    }
+
     public BoardEntity findByIdWithOwner(Long id, Long loginUserId) {
         BoardEntity boardEntity = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));

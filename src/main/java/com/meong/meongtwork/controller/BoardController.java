@@ -48,4 +48,11 @@ public class BoardController {
         boardService.update(boardDto, user.getId());
         return "redirect:/home";
     }
+
+    @GetMapping("/board/view/{id}")
+    public String viewBoard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("board", boardService.findById(id));
+
+        return "board/view";
+    }
 }
