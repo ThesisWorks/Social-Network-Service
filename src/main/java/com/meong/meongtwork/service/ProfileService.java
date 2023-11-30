@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class ProfileService {
@@ -21,6 +23,12 @@ public class ProfileService {
 	public ProfileEntity loadProfileByUserId(Long userId) {
 		return profileRepository.findByUserId(userId)
 				.orElseThrow(() -> new IllegalArgumentException("해당 유저 profile은 존재하지 않습니다."));
+	}
+
+	public void validateAuthorization(Long profileId, Long accessId){
+		ProfileEntity profileEntity = loadProfileByUserId(accessId);
+		if (!Objects.equals(profileEntity.getId(), profileId))
+			throw new IllegalArgumentException("수정할 권한이 없습니다.");
 	}
 
 	public void profileUpdate(ProfileDto profileDto, UserEntity userEntity) {
