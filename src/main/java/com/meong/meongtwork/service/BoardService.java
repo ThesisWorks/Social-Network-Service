@@ -10,10 +10,39 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-	private final BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
-	public void save(BoardDto boardDto, UserEntity userEntity) {
-		BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDto, userEntity);
-		boardRepository.save(boardEntity);
-	}
+    public void save(BoardDto boardDto, UserEntity userEntity) {
+        BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDto, userEntity);
+        boardRepository.save(boardEntity);
+    }
+
+    public BoardEntity findById(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
+    }
+
+    public BoardEntity findByIdWithOwner(Long id, Long loginUserId) {
+        BoardEntity boardEntity = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
+
+        if (!boardEntity.getUser().getId().equals(loginUserId)) {
+            throw new IllegalArgumentException("해당 게시글에 대한 권한이 없습니다.");
+        }
+
+        return boardEntity;
+    }
+
+    public void update(BoardDto boardDto, Long loginUserId) {
+        BoardEntity boardEntity = findByIdWithOwner(boardDto.getId(), loginUserId);
+        boardEntity.setContent(boardDto.getContent());
+        boardEntity.setTitle(boardDto.getTitle());
+
+        boardRepository.save(boardEntity);
+    }
+
+    public void delete(BoardDto boardDto, Long loginUserId) {
+        BoardEntity boardEntity = findByIdWithOwner(boardDto.getId(), loginUserId);
+        boardRepository.delete(boardEntity);
+    }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+<div class="container">
+    <form action="/board/edit" method="post" enctype="multipart/form-data">
+        <div class="header">
+            <input type="hidden" name="id" th:value="${board.getId()}">
+
+            <input type="text" id="editableTitle" th:value="${board.getTitle()}" name="title">
+            <textarea id="postContent" rows="10" th:text="${board.getContent()}" name="content"></textarea>
+            <button type="submit" id="createButton">게시</button>
+        </div>
+    </form>
+</div>
+<script src="/js/post.js"></script>
+</body>
+</html>

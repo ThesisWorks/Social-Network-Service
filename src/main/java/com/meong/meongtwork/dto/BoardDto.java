@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardDto {
-	private Long id;
-	private String content;
-	private Long userId;
-	private String title;
-	private LocalDateTime boardCreatedTime;
-	private LocalDateTime boardUpdatedTime;
+    private Long id;
+    private String content;
+    private String title;
 }

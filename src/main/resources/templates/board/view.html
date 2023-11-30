@@ -1,0 +1,59 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/board/view.css">
+</head>
+<body>
+<div class="card">
+    <div class="profile">
+        <h4 th:text="${board.getUser().getUsername()}"></h4>
+        <img src="/images/base_profile.png"/>
+
+        <!-- 드롭다운 메뉴를 위한 새로운 div 컨테이너 -->
+        <div class="dropdown">
+            <!-- 기존 i 태그, 클릭 시 드롭다운 메뉴를 표시하도록 onclick 이벤트 추가 -->
+            <i onclick="myFunction()" class="dropbtn bi bi-three-dots-vertical fa-2x" style="color:gray;"></i>
+            <!-- 추가된 드롭다운 메뉴 컨텐츠 -->
+            <div id="myDropdown" class="dropdown-content">
+                <a th:href="@{/board/edit/{id}(id=${board.getId()})}">수정하기</a>
+
+                <form id="deleteForm" action="/board/delete" method="post" enctype="multipart/form-data" style="display: none;">
+                    <input type="hidden" name="id" th:value="${board.getId()}">
+                </form>
+
+                <!-- 삭제 링크 -->
+                <a href="#delete" onclick="event.preventDefault(); document.getElementById('deleteForm').submit();">삭제하기</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="post">
+        <img src="https://picsum.photos/400/400"/>
+    </div>
+    <div class="icons">
+        <i id="like" class="bi bi-heart fa-2x "></i>
+        <i class="bi bi-chat-left fa-2x"></i>
+        <i class="bi bi-arrow-up-right-square fa-2x"></i>
+        <i id="save" class="bi bi-bookmark  fa-2x"></i>
+    </div>
+    <div class="about-post">
+        <h4><img src="/images/base_profile.png" width="22" height="22"/> Liked by Gandijuha and 104,424 others</h4>
+        <h4 class="name_caption" th:text="${board.getTitle()}"></h4>
+        <h4 class="name_caption"><span id="caption" th:text="${board.getContent()}"></span></h4>
+        <h5 style="margin-top:-20px;">View all 69 comments</h5>
+        <h4>
+            <img src="/images/base_profile.png" width="20" height="20"/>
+            <input type="text" placeholder="add a comment&#128512;&#128516;&#128525;&#128151;"
+                   style="margin-top:-10px; margin-left:5px; margin-bottom:5px;"/>
+        </h4>
+        <h6>26 minutes ago</h6>
+    </div>
+</div>
+<script src="/js/board/view.js"></script>
+</body>
+</html>
