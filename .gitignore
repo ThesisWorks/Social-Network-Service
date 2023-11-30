@@ -1,0 +1,9 @@
+.gradle
+.idea
+build
+gradle
+build.gradle
+/src/test
+/src/main/resources/application.yml
+.DSstore
+

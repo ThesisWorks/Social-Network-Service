@@ -10,26 +10,26 @@ import lombok.Setter;
 @Setter
 @Table(name = "board_table")
 public class BoardEntity extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String content;
+	@Column(nullable = false)
+	private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private UserEntity user;
 
-    @Column(nullable = false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-    public static BoardEntity toSaveEntity(BoardDto boardDto, UserEntity user) {
-        BoardEntity boardEntity = new BoardEntity();
-        boardEntity.setContent(boardDto.getContent());
-        boardEntity.setUser(user);
-        boardEntity.setTitle(boardDto.getTitle());
+	public static BoardEntity toSaveEntity(BoardDto boardDto, UserEntity user) {
+		BoardEntity boardEntity = new BoardEntity();
+		boardEntity.setContent(boardDto.getContent());
+		boardEntity.setUser(user);
+		boardEntity.setTitle(boardDto.getTitle());
 
-        return boardEntity;
-    }
+		return boardEntity;
+	}
 }

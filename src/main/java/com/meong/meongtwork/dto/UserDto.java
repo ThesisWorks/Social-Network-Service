@@ -8,13 +8,13 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UserDto {
-    private String username;
-    private String password;
+	private String username;
+	private String password;
 
-    private UserEntity toEntity() {
-        return UserEntity.builder()
-                .username(username)
-                .password(password)
-                .build();
-    }
+	private UserEntity toEntity() {
+		return UserEntity.builder()
+				.username(username)
+				.password(password)
+				.build();
+	}
 }

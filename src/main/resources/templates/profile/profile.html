@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>프로필</title>
+</head>
+<body>
+<h1>프로필</h1>
+<div>
+    <!--객체 for each문 파악해서 출력하기-->
+    <h3>이름: <span th:text="${profile.getUser().getUsername()}"></span></h3>
+    <h3>소개: <span th:text="${profile.getIntroduction()}"></span></h3>
+    <form action="/profile/edit" method="get">
+        <button type="submit" id="introButton">소개작성</button>
+    </form>
+    <!-- 추가적인 프로필 정보를 여기에 표시할 수 있습니다 -->
+
+</div>
+</body>
+</html>

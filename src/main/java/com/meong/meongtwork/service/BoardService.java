@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-    private final BoardRepository boardRepository;
-    public void save(BoardDto boardDto, UserEntity userEntity) {
-        BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDto, userEntity);
-        boardRepository.save(boardEntity);
-    }
+	private final BoardRepository boardRepository;
+
+	public void save(BoardDto boardDto, UserEntity userEntity) {
+		BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDto, userEntity);
+		boardRepository.save(boardEntity);
+	}
 }
