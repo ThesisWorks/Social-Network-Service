@@ -12,13 +12,22 @@
 <div class="card">
     <div class="profile">
         <h4 th:text="${board.getUser().getUsername()}"></h4>
-        <h6>Follow</h6>
         <img src="/images/base_profile.png"/>
-        <span>.</span>
-        <i class="bi bi-three-dots-vertical fa-2x" style="color:gray;"></i>
+
+        <!-- 드롭다운 메뉴를 위한 새로운 div 컨테이너 -->
+        <div class="dropdown">
+            <!-- 기존 i 태그, 클릭 시 드롭다운 메뉴를 표시하도록 onclick 이벤트 추가 -->
+            <i onclick="myFunction()" class="dropbtn bi bi-three-dots-vertical fa-2x" style="color:gray;"></i>
+            <!-- 추가된 드롭다운 메뉴 컨텐츠 -->
+            <div id="myDropdown" class="dropdown-content">
+                <a th:href="@{/board/edit/{id}(id=${board.getId()})}">수정하기</a>
+                <a href="#remove">삭제하기</a>
+            </div>
+        </div>
+
     </div>
     <div class="post">
-        <img src="https://picsum.photos/400/400"/ >
+        <img src="https://picsum.photos/400/400"/>
     </div>
     <div class="icons">
         <i id="like" class="bi bi-heart fa-2x "></i>
@@ -39,5 +48,6 @@
         <h6>26 minutes ago</h6>
     </div>
 </div>
+<script src="/js/board/view.js"></script>
 </body>
 </html>

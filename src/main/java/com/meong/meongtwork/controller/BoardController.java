@@ -46,7 +46,7 @@ public class BoardController {
         UserEntity user = userDetailService.loadUserByUsername(principal.getName());
 
         boardService.update(boardDto, user.getId());
-        return "redirect:/home";
+        return "redirect:/board/view/" + boardDto.getId();
     }
 
     @GetMapping("/board/view/{id}")
