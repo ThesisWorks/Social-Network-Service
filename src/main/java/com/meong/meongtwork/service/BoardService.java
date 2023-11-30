@@ -40,4 +40,9 @@ public class BoardService {
 
         boardRepository.save(boardEntity);
     }
+
+    public void delete(BoardDto boardDto, Long loginUserId) {
+        BoardEntity boardEntity = findByIdWithOwner(boardDto.getId(), loginUserId);
+        boardRepository.delete(boardEntity);
+    }
 }

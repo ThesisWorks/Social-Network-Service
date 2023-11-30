@@ -55,4 +55,12 @@ public class BoardController {
 
         return "board/view";
     }
+
+    @PostMapping("/board/delete")
+    public String deleteBoard(@ModelAttribute BoardDto boardDto, Principal principal) {
+        UserEntity user = userDetailService.loadUserByUsername(principal.getName());
+
+        boardService.delete(boardDto, user.getId());
+        return "redirect:/home";
+    }
 }

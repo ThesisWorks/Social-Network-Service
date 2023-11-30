@@ -21,7 +21,13 @@
             <!-- 추가된 드롭다운 메뉴 컨텐츠 -->
             <div id="myDropdown" class="dropdown-content">
                 <a th:href="@{/board/edit/{id}(id=${board.getId()})}">수정하기</a>
-                <a href="#remove">삭제하기</a>
+
+                <form id="deleteForm" action="/board/delete" method="post" enctype="multipart/form-data" style="display: none;">
+                    <input type="hidden" name="id" th:value="${board.getId()}">
+                </form>
+
+                <!-- 삭제 링크 -->
+                <a href="#delete" onclick="event.preventDefault(); document.getElementById('deleteForm').submit();">삭제하기</a>
             </div>
         </div>
 
