@@ -5,7 +5,12 @@ import com.meong.meongtwork.entity.BoardEntity;
 import com.meong.meongtwork.entity.UserEntity;
 import com.meong.meongtwork.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +49,10 @@ public class BoardService {
     public void delete(BoardDto boardDto, Long loginUserId) {
         BoardEntity boardEntity = findByIdWithOwner(boardDto.getId(), loginUserId);
         boardRepository.delete(boardEntity);
+    }
+
+    public Page<BoardEntity> findAllByUserFollow(Long userId, Pageable pageable) {
+        Set<Long> userIds = Set.of(1L);
+        return boardRepository.findAllByUserIds(userIds, pageable);
     }
 }
