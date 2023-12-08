@@ -20,7 +20,9 @@
         <img th:src="${board.getImagePath()}"/>
     </div>
     <div class="about-post">
-        <form action="/board/post" method="post" enctype="multipart/form-data">
+        <form action="/board/edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:value="${board.getId()}">
+            <input type="hidden" name="imagePath" th:value="${board.getImagePath()}">
             <input id="editableTitle" class="name_caption" type="text" th:value="${board.getTitle()}" name="title">
             <textarea id="postContent" class="name_caption" rows="5" th:text="${board.getContent()}" name="content"></textarea>
             <button type="submit"

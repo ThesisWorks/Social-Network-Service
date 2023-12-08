@@ -1,26 +1,30 @@
 body {
     background-color: #f5f5f5;
-    height: 100vh;
-    width: 100wh;
+    width: 100vw;
     overflow: hidden;
     font-family: "Oxygen";
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
+
 .card{
-    /* height:auto; */
     width: 400px;
-    background-color:white;
-    border-radius:10px;
+    max-width: 400px;
+    height: 80vh; /* Adjust this value as needed */
+    background-color: white;
+    border-radius: 10px;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
+    box-sizing: border-box; /* Include padding and border in the element's width and height */
 }
 .profile{
     position: relative;
-    height:70px;
+    height:auto;
     width:100%;
     background-color:white;
     border-radius:10px;
@@ -75,27 +79,11 @@ body {
     top:-15px;
 
 }
-.icons{
-    height:50px;
-    background-color:white;
-
-}
-.icons i{
-    position:grid;
-    padding-left:10px;
-    height:100%;
-}
-.icons #save{
-    position:grid;
-    padding-left:205px;
-    height:100%;
-}
-
 
 .about-post{
     margin-left:15px;
-    margin-top:-25px;
-    padding-right:5px;
+    margin-right:15px;
+    margin-top:5px;
 
 }
 .about-post img{
@@ -104,12 +92,17 @@ body {
 
 }
 .name_caption{
-    margin-top:-10px;
 }
-#caption{
+
+.content_caption{
+    margin-top:5px;
     font-size:14px;
-    color:darkblack;
+    width: 90%;
+    word-wrap: break-word; /* Older browsers */
+    overflow-wrap: break-word; /* Standard property */
+    max-width: calc(100% - 30px); /* 100% of the .card width minus the padding on both sides */
 }
+
 .about-post h5{
     font-size:13px;
     color:gray;

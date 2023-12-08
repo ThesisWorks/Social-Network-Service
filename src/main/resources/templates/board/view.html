@@ -35,23 +35,9 @@
     <div class="post">
         <img th:src="${board.getImagePath()}"/>
     </div>
-    <div class="icons">
-        <i id="like" class="bi bi-heart fa-2x "></i>
-        <i class="bi bi-chat-left fa-2x"></i>
-        <i class="bi bi-arrow-up-right-square fa-2x"></i>
-        <i id="save" class="bi bi-bookmark  fa-2x"></i>
-    </div>
     <div class="about-post">
-        <h4><img src="/images/base_profile.png" width="22" height="22"/> Liked by Gandijuha and 104,424 others</h4>
         <h4 class="name_caption" th:text="${board.getTitle()}"></h4>
-        <h4 class="name_caption"><span id="caption" th:text="${board.getContent()}"></span></h4>
-        <h5 style="margin-top:-20px;">View all 69 comments</h5>
-        <h4>
-            <img src="/images/base_profile.png" width="20" height="20"/>
-            <input type="text" placeholder="add a comment&#128512;&#128516;&#128525;&#128151;"
-                   style="margin-top:-10px; margin-left:5px; margin-bottom:5px;"/>
-        </h4>
-        <h6>26 minutes ago</h6>
+        <h5><span id="caption" class="content_caption" th:text="${board.getContent()}"></span></h5>
     </div>
 </div>
 <script src="/js/board/view.js"></script>
