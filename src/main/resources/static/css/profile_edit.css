@@ -5,3 +5,8 @@
     justify-content: center; /* 세로축 중앙 정렬 */
     height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
+
+a {
+    text-decoration:none;
+    color:black;
+}

@@ -7,6 +7,7 @@
         /* 여기에 원하는 스타일을 추가할 수 있습니다. */
     </style>
     <link rel="stylesheet" href="/css/home_icon.css">
+    <link rel="stylesheet" href="/css/profile_edit.css">
 </head>
 <body>
 <a href="/home">
@@ -26,7 +27,10 @@
             <tbody>
             <tr th:each="member, iStat : ${members}">
                 <td th:text="${iStat.index + 1}"></td>
-                <td th:text="${member}"></td>
+                <td>
+                    <a th:text="${member}" th:href="@{/profile/{username}(username=${member})}">
+                    </a>
+                </td>
                 <!-- 다른 열에 대한 데이터 추가 -->
             </tr>
             </tbody>
