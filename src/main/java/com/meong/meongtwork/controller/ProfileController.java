@@ -84,7 +84,7 @@ public class ProfileController {
 				.map(UserEntity::getUsername)
 				.toList();
 		model.addAttribute("members", followerNames);
-		return "/profile/follow";
+		return "profile/follow";
 	}
 
 	@PostMapping("/profile/followerList")
