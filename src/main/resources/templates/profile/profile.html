@@ -7,13 +7,16 @@
 
             <div class="profile-image">
 
-                <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
-                     alt="">
+                <img src="/images/base_profile.png" width="152" height="152">
 
             </div>
 
             <div class="profile-user-settings">
                 <h1 class="profile-user-name"><span th:text="${profile.getUser().getUsername()}"></span></h1>
+
+                <!-- Spacer -->
+                <div class="spacer"></div>
+
                 <form action="/profile/edit" method="post">
                     <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
                     <button type="submit" class="btn profile-edit-btn">Edit profile</button>
@@ -29,13 +32,11 @@
             <div class="profile-stats">
                     <form action="/profile/followingList" method="post">
                         <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
-                        <li><span th:text="${following.size()}" class="profile-stat-count"></span>following</li>
-                        <button type="submit" id="followingList">followingList</button>
+                        <button class="transparent-button" type="submit" id="followingList" th:text="${following.size()} + ' following'"></button>
                     </form>
                     <form action="/profile/followerList" method="post">
                         <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
-                        <li><span th:text="${follower.size()}" class="profile-stat-count"></span> follower</li>
-                        <button type="submit" id="followerList">followList</button>
+                        <button class="transparent-button" type="submit" id="followerList" th:text="${follower.size()} + ' follower'">followList</button>
                     </form>
             </div>
             <div class="profile-bio">
