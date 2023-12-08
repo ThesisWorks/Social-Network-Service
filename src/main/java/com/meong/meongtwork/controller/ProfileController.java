@@ -1,8 +1,10 @@
 package com.meong.meongtwork.controller;
 
 import com.meong.meongtwork.dto.ProfileDto;
+import com.meong.meongtwork.entity.FollowEntity;
 import com.meong.meongtwork.entity.UserEntity;
 import com.meong.meongtwork.service.BoardService;
+import com.meong.meongtwork.service.FollowService;
 import com.meong.meongtwork.service.ProfileService;
 import com.meong.meongtwork.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +22,7 @@ public class ProfileController {
 	private final UserDetailService userDetailService;
 	private final BoardService boardService;
 	private final ProfileService profileService;
+	private final FollowService followService;
 
 	@GetMapping("profile")
 	public String myprofile(Principal principal) {
@@ -32,10 +37,11 @@ public class ProfileController {
 		return "profile/profile";
 	}
 
-	@GetMapping("/profile/edit")
-	public String profileEdit(Model model, Principal principal) {
-		Long id = userDetailService.loadUserByUsername(principal.getName()).getId();
-		model.addAttribute("profile", profileService.loadProfileByUserId(id));
+	@PostMapping("/profile/edit")
+	public String profileEdit(@RequestParam("id") Long profileId, Model model, Principal principal) {
+		Long myId = userDetailService.loadUserByUsername(principal.getName()).getId();
+		profileService.validateAuthorization(profileId, myId);
+		model.addAttribute("profile", profileService.loadProfileByUserId(myId));
 		return "profile/edit";
 	}
 
@@ -43,5 +49,36 @@ public class ProfileController {
 	public String saveIntro(@ModelAttribute ProfileDto profileDto, Principal principal) {
 		profileService.profileUpdate(profileDto, userDetailService.loadUserByUsername(principal.getName()));
 		return "redirect:/profile";
+	}
+
+	@PostMapping("/profile/follow")
+	public String follow(@ModelAttribute("id") Long profileId, Principal principal){
+		UserEntity me = userDetailService.loadUserByUsername(principal.getName());
+		UserEntity profileUser = profileService.loadProfileByUserId(profileId).getUser();
+		if (!Objects.equals(profileId, me.getId()))
+			followService.saveFollow(profileUser, me);
+		return "redirect:/profile/" + profileUser.getUsername();
+	}
+
+	@PostMapping("/profile/followingList")
+	public String follower(@ModelAttribute("id") Long profileId, Model model) {
+		List<FollowEntity> followers = followService.loadFollowerByUserId(profileId);
+		List<String> followerNames = followers.stream()
+				.map(FollowEntity::getFollowingUser)
+				.map(UserEntity::getUsername)
+				.toList();
+		model.addAttribute("members", followerNames);
+		return "/profile/follow";
+	}
+
+	@PostMapping("/profile/followerList")
+	public String following(@ModelAttribute("id") Long profileId, Model model){
+		List<FollowEntity> followings = followService.loadFollowingByUserId(profileId);
+		List<String> followingNames = followings.stream()
+				.map(FollowEntity::getFollowerUser)
+				.map(UserEntity::getUsername)
+				.toList();
+		model.addAttribute("members", followingNames);
+		return "profile/follow";
 	}
 }

@@ -8,8 +8,21 @@
     <!--객체 for each문 파악해서 출력하기-->
     <h3>이름: <span th:text="${profile.getUser().getUsername()}"></span></h3>
     <h3>소개: <span th:text="${profile.getIntroduction()}"></span></h3>
-    <form action="/profile/edit" method="get">
+    <form action="/profile/edit" method="post">
+        <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
         <button type="submit" id="introButton">소개작성</button>
+    </form>
+    <form action="/profile/follow" method="post">
+        <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
+        <button type="submit" id="followButton">follow</button>
+    </form>
+    <form action="/profile/followingList" method="post">
+        <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
+        <button type="submit" id="followingList">followingList</button>
+    </form>
+    <form action="/profile/followerList" method="post">
+        <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
+        <button type="submit" id="followerList">followList</button>
     </form>
     <!-- 추가적인 프로필 정보를 여기에 표시할 수 있습니다 -->
 
