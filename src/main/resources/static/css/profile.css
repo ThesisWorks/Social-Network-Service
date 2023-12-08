@@ -414,3 +414,12 @@ Remove or comment-out the code block below to see how the browser will fall-back
 .transparent-button:hover {
     color: #555; /* 마우스 오버 시 글자 색상 변경, 필요에 따라 변경 */
 }
+
+.fixed-home-icon {
+    position: fixed; /* 요소를 고정시킴 */
+    top: 10px; /* 상단에서 10px 떨어진 위치에 배치 */
+    left: 10px; /* 오른쪽에서 10px 떨어진 위치에 배치 */
+    width: 50px; /* 이미지의 너비 */
+    height: 50px; /* 이미지의 높이 */
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 z-index 설정 */
+}

@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Intro Page</title>
+    <link rel="stylesheet" href="/css/home_icon.css">
+    <link rel="stylesheet" href="/css/profile_edit.css">
 </head>
 <body>
-<h1>소개 작성 페이지</h1>
-<form action="/profile/saveEdit" method="post" enctype="multipart/form-data">
-    <label for="introText">소개글을 입력하세요:</label><br>
-    <input type="hidden" name="id" th:value="${profile.getId()}">
-    <textarea id="introText" name="intro" rows="4" cols="50" maxlength="30"></textarea><br><br>
-    <button type="submit">저장</button>
-</form>
+<a href="/home">
+    <img src="/images/home_icon.png" class="fixed-home-icon">
+</a>
+<div class="form-container">
+    <h1>소개 작성 페이지</h1>
+    <form action="/profile/saveEdit" method="post" enctype="multipart/form-data">
+        <label for="introText">소개글을 입력하세요:</label><br>
+        <input type="hidden" name="id" th:value="${profile.getId()}">
+        <textarea id="introText" name="intro" rows="4" cols="50" maxlength="30"></textarea><br><br>
+        <button type="submit">저장</button>
+    </form>
+</div>
 </body>
 </html>
