@@ -61,23 +61,14 @@
     <div class="gallery" th:each="board : ${boards}">
 
 
-
         <div class="gallery-item" tabindex="0">
+            <a th:href="@{/board/view/{id}(id=${board.getId()})}">
+                <img th:src="${board.getImagePath()}" class="gallery-image" alt="" width="300px" height="300px">
 
-            <img th:src="${board.getImagePath()}" class="gallery-image" alt="" width="300px" height="300px">
+                <div class="gallery-item-info">
 
-            <div class="gallery-item-info">
-
-                <ul>
-                    <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
-                            class="fas fa-heart" aria-hidden="true"></i>
-                    </li>
-                    <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
-                            class="fas fa-comment" aria-hidden="true"></i>
-                    </li>
-                </ul>
-
-            </div>
+                </div>
+            </a>
 
         </div>
 
