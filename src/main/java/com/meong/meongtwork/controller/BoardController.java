@@ -41,7 +41,7 @@ public class BoardController {
                 // 파일 이름 가져오기
                 String imageName = file.getOriginalFilename();
                 // 저장할 파일 경로 설정
-                imagePath = LocalFilePaths.BOARD_IMAGE_DIR_PATH.getPath() + imageName;
+                imagePath = LocalFilePaths.BOARD_IMAGE_DIR_PATH.getPath() + System.currentTimeMillis() + "_" + imageName;
                 Path path = Paths.get(imagePath);
                 // 파일 저장
                 Files.copy(file.getInputStream(), path);
