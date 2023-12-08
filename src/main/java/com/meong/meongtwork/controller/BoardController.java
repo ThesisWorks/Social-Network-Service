@@ -21,7 +21,10 @@ public class BoardController {
     private final UserDetailService userDetailService;
 
     @GetMapping("/board/post")
-    public String board() {
+    public String board(Principal principal, Model model) {
+        UserEntity user = userDetailService.loadUserByUsername(principal.getName());
+
+        model.addAttribute("user", user);
         return "board/post";
     }
 

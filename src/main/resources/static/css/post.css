@@ -1,55 +1,162 @@
-body, h1, p {
-    margin: 0;
-    padding: 0;
-}
+.color .green  {background: #82c8a0;}
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body {
     background-color: #f5f5f5;
+    height: 100vh;
+    width: 100vw; /* 수정된 너비 단위 */
+    display: flex; /* Flexbox 레이아웃을 적용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    overflow: hidden;
+    overflow-y: auto;
+    font-family: "Oxygen";
 }
 
-.header {
+input, textarea {
+    width: 100%; /* Full width */
+    padding: 10px; /* Some padding */
+    margin: 8px 0; /* Some margin */
+    display: inline-block; /* For inline layout */
+    border: 1px solid transparent; /* Transparent border */
+    box-sizing: border-box; /* For including padding in width */
+    background-color: transparent; /* Transparent background */
+    font-family: "Oxygen", sans-serif; /* Font family */
+    font-size: 14px; /* Font size */
+}
+
+input:focus, textarea:focus {
+    outline: none; /* Removes the default focus outline */
+    border-color: #ccc; /* Light grey border */
+    background-color: white; /* White background */
+}
+
+.btn, .btn-two {
+    margin: 9px;
+}
+
+.btn.small,
+.btn-two.small,
+.btn-gradient.small,
+.btn-effect.small {
+    padding: 8px 18px;
+    font-size: 14px;
+}
+
+.btn {
+    position: relative;
+    border: 0;
+    padding: 15px 25px;
+    display: inline-block;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h1 {
-    font-size: 2em;
-    color: #333;
-}
-
-p {
-    font-size: 1em;
-    color: #666;
-}
-
-#createButton {
-    background-color: #fff;
-    border: none;
-    font-size: 1.5em;
+    color: white;
+    float: right;
     cursor: pointer;
-    outline: none;
 }
 
-#editableTitle {
-    border: none;
-    background-color: transparent;
-    font-size: 2em;
-    color: #333;
-    text-align: center;
+.btn:active {
+    top: 4px;
 }
 
-#postContent {
-    width: 80%; /* textarea 너비 조정 */
-    resize: vertical; /* 사용자가 textarea 크기를 조절할 수 있게 함 */
+.btn.green, .btn-two.green   {background-color: #9abf7f;}
+
+.btn.green {box-shadow: 0px 4px 0px #87a86f;}
+.btn.green:active {box-shadow: 0 0 #87a86f; background-color: #87a86f;}
+
+.card {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: auto;
+    position: relative; /* 기존의 absolute 위치 제거 */
+    /* 기존의 absolute 위치 제거 */
 }
 
-#editableTitle:focus {
-    border: 1px solid #666; /* 편집 중임을 나타내기 위한 스타일 */
+.profile{
+    position: relative;
+    height:70px;
+    width:100%;
+    background-color:white;
+    border-radius:10px;
+}
+.profile img{
+    height:50px;
+    width:50px;
+    margin-left:5%;
+    margin-bottom:;
+    margin-top:3%;
+    border-radius:50%;
+    object-fit: cover;
+}
+.profile h4{
+    position:absolute;
+    font-size:16px;
+    font-weight:bold;
+    padding-left:80px;
+    padding-top:-5%;
+
 }
 
+.profile h5{
+    position:absolute;
+    font-size:13px;
+    font-weight:strong;
+    color:gray;
+    padding-left:80px;
+    padding-top:5%;
+}
+.profile span{
+    position:absolute;
+    font-size:35px;
+    font-weight:strong;
+    top:0px;
+    left:200px;
+
+}
+.profile h6{
+    position:absolute;
+    font-size:16px;
+    font-weight:900;
+    color:#0095f6;
+    left:220px;
+    top:-15px;
+
+}
+
+
+.about-post{
+    margin-left:15px;
+    margin-top:10px;
+    padding-right:15px;
+
+}
+.about-post img{
+    top:0px;
+    border-radius:50%;
+
+}
+.name_caption{
+    margin-top:10px;
+}
+
+#caption{
+    font-size:14px;
+    color:darkblack;
+}
+
+.about-post h5{
+    font-size:13px;
+    color:gray;
+    top:10px;
+    height:10px;
+}
+
+.about-post h6{
+    margin-top:14px;
+    color:gray;
+}
+
+.post img{
+    width:100%;
+    height:auto;
+    object-fit: contain;
+}
