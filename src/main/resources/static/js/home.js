@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let page = 0;
-    const size = 1; // 한 번에 불러올 게시판의 수
+    const size = 2; // 한 번에 불러올 게시판의 수
     let isFetching = false; // 현재 데이터를 불러오고 있는지 상태 표시
 
     const loadMoreBoards = function () {
@@ -71,5 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    loadMoreBoards();
     window.addEventListener('scroll', loadMoreBoards);
 });
