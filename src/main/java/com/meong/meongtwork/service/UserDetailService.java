@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @Service
@@ -16,5 +18,9 @@ public class UserDetailService implements UserDetailsService {
 	public UserEntity loadUserByUsername(String username) {
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new IllegalArgumentException("해당 유저 id는 존재하지 않습니다."));
+	}
+
+	public List<UserEntity> findUsers(){
+		return userRepository.findAll();
 	}
 }

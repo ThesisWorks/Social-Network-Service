@@ -12,9 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -45,5 +47,19 @@ public class HomeController {
                 .collect(Collectors.toSet());
 
         return boardService.findAllByUserFollow(followedUserIds, pageable);
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("query") String query, Model model){
+        List<UserEntity> Users = userDetailService.findUsers();
+        List<String> results = new ArrayList<>();
+        for (UserEntity user : Users) {
+            // 검색어가 데이터에 포함되어 있는지 확인하고 검색 결과를 생성
+            if (user.getUsername().contains(query)) {
+                results.add(user.getUsername());
+            }
+        }
+        model.addAttribute("results", results);
+        return "search-results";
     }
 }

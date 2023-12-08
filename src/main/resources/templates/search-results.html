@@ -1,0 +1,66 @@
+<!-- search-results.html -->
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* 추가적인 CSS 스타일링 */
+        /* 여기에 원하는 스타일을 추가할 수 있습니다. */
+    </style>
+    <link rel="stylesheet" href="/css/home_icon.css">
+    <link rel="stylesheet" href="/css/profile_edit.css">
+</head>
+<body>
+<a href="/home">
+    <img src="/images/home_icon.png" class="fixed-home-icon">
+</a>
+<div class="container">
+    <div>
+        <table class="table table-striped">
+            <!-- Bootstrap을 이용한 테이블 스타일 적용 -->
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <!-- 필요한 다른 헤더 열 -->
+            </tr>
+            </thead>
+            <tbody th:if="${not results.isEmpty()}"}>
+            <tr th:each="result, iStat : ${results}">
+                <td th:text="${iStat.index + 1}"></td>
+                <td>
+                    <a th:text="${result}" th:href="@{/profile/{username}(username=${result})}">
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+            <div th:if="${results.isEmpty()}">
+                <p>검색 결과가 없습니다.</p>
+            </div>
+        </table>
+    </div>
+</div> <!-- /container -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap JavaScript를 사용하여 테이블을 보다 동적으로 만들 수 있습니다. -->
+<!-- 필요에 따라서 추가적인 JavaScript를 추가하여 기능을 구현할 수도 있습니다. -->
+</body>
+</html>
+
+
+
+
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<div th:if="${results}">-->
+<!--    <ul>-->
+<!--        <li th:each="result : ${results}" th:text="${result}"></li>-->
+<!--    </ul>-->
+<!--</div>-->
+<!--<div th:if="${not results}">-->
+<!--    <p>검색 결과가 없습니다.</p>-->
+<!--</div>-->
+<!--</html>-->
