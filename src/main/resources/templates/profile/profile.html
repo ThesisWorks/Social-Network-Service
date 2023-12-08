@@ -1,8 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <header>
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/search.css">
     <div class="container">
-        <form th:action="@{/search}" method="get">
+        <form class="search-form" th:action="@{/search}" method="get">
             <input type="text" name="query" placeholder="검색어를 입력하세요">
             <button type="submit">검색</button>
         </form>

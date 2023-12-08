@@ -4,6 +4,5 @@
     left: 20%;
     transform: translateX(-20%);
     width: 300px; /* 원하는 너비로 조절 */
-    height: 50px; /* 원하는 높이로 조절 */
-    max-width: 400px; /* 최대 너비 지정 */
+    height: 100px; /* 원하는 높이로 조절 */
 }
