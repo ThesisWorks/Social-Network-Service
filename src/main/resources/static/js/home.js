@@ -19,13 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         profileDiv.className = "profile";
                         cardDiv.appendChild(profileDiv);
 
+                        const profileLink = document.createElement("a");
+                        profileLink.href = `/profile/${board.user.username}`;
+                        profileDiv.appendChild(profileLink);
+
                         const usernameH4 = document.createElement("h4");
                         usernameH4.textContent = board.user.username;
-                        profileDiv.appendChild(usernameH4);
+                        profileLink.appendChild(usernameH4);
 
                         const profileImg = document.createElement("img");
                         profileImg.src = "/images/base_profile.png";
-                        profileDiv.appendChild(profileImg);
+                        profileLink.appendChild(profileImg);
 
                         const postDiv = document.createElement("div");
                         postDiv.className = "post";

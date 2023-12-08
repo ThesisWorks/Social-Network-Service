@@ -23,6 +23,12 @@ body {
     background-color:white;
     border-radius:10px;
 }
+
+.profile a{
+    text-decoration:none;
+    color:black;
+}
+
 .profile img{
     height:50px;
     width:50px;
