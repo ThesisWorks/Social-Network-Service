@@ -8,3 +8,7 @@ toggle = () => {
 setTimeout(() => {
     container.classList.add('sign-in')
 }, 200)
+
+$('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
