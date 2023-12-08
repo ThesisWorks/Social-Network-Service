@@ -17,7 +17,7 @@
 
     </div>
     <div class="post">
-        <img src="/images/base_board_image.png"/>
+        <img th:src="${board.getImagePath()}"/>
     </div>
     <div class="about-post">
         <form action="/board/post" method="post" enctype="multipart/form-data">

@@ -25,6 +25,11 @@
                     <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
                     <button type="submit" class="btn profile-follow-btn">Follow</button>
                 </form>
+
+                <form action="/logout" method="get">
+                    <button type="submit" class="btn profile-follow-btn" id="createButton">Logout</button>
+                </form>
+
                 <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
                                                                                           aria-hidden="true"></i>
                 </button>

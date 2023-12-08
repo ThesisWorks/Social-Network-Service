@@ -35,72 +35,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         postImg.src = board.imagePath;
                         postDiv.appendChild(postImg);
 
-                        const iconsDiv = document.createElement("div");
-                        iconsDiv.className = "icons";
-                        cardDiv.appendChild(iconsDiv);
-
-                        const likeI = document.createElement("i");
-                        likeI.className = "bi bi-heart fa-2x ";
-                        iconsDiv.appendChild(likeI);
-
-                        const chatLeftI = document.createElement("i");
-                        chatLeftI.className = "bi bi-chat-left fa-2x";
-                        iconsDiv.appendChild(chatLeftI);
-
-                        const rightSquareI = document.createElement("i");
-                        rightSquareI.className = "bi bi-arrow-up-right-square fa-2x";
-                        iconsDiv.appendChild(rightSquareI);
-
-                        const saveI = document.createElement("i");
-                        saveI.className = "bi bi-bookmark  fa-2x";
-                        iconsDiv.appendChild(saveI);
-
                         const aboutPostDiv = document.createElement("div");
-                        aboutPostDiv.className = "aboutPost";
+                        aboutPostDiv.className = "about-post";
                         cardDiv.appendChild(aboutPostDiv);
-
-                        const likePeopleH4 = document.createElement("h4");
-                        likePeopleH4.textContent = "좋아요 0개";
-                        aboutPostDiv.appendChild(likePeopleH4);
-
-                        const likePeopleImg = document.createElement("img");
-                        likePeopleImg.src = "/images/base_profile.png";
-                        likePeopleImg.width = "22";
-                        likePeopleImg.height = "22";
-                        likePeopleH4.appendChild(likePeopleImg);
 
                         const boardTitleH4 = document.createElement("h4");
                         boardTitleH4.className = "nameCaption";
                         boardTitleH4.textContent = board.title;
                         aboutPostDiv.appendChild(boardTitleH4);
 
-                        const boardContentH4 = document.createElement("h4");
-                        boardContentH4.className = "nameCaption";
-                        aboutPostDiv.appendChild(boardContentH4);
+                        const boardContentH5 = document.createElement("h5");
+                        aboutPostDiv.appendChild(boardContentH5);
 
                         const boardContentSpan = document.createElement("span");
                         boardContentSpan.textContent = board.content;
-                        boardContentH4.appendChild(boardContentSpan);
-
-                        const commentNumDiv = document.createElement("div");
-                        commentNumDiv.style = "margin-top:-20px;";
-                        commentNumDiv.textContent = "댓글 0개";
-                        aboutPostDiv.appendChild(commentNumDiv);
-
-                        const commentH4 = document.createElement("h4");
-                        aboutPostDiv.appendChild(commentH4);
-
-                        const commentProfileImg = document.createElement("img");
-                        commentProfileImg.src = "/images/base_profile.png";
-                        commentProfileImg.width = "20";
-                        commentProfileImg.height = "20";
-                        commentH4.appendChild(commentProfileImg);
-
-                        const commentInput = document.createElement("input");
-                        commentInput.type = "text";
-                        commentInput.placeholder = "add a comment&#128512;&#128516;&#128525;&#128151;";
-                        commentInput.style = "margin-top:-10px; margin-left:5px; margin-bottom:5px;";
-                        commentH4.appendChild(commentInput);
+                        boardContentSpan.className = "contentCaption";
+                        boardContentH5.appendChild(boardContentSpan);
 
                         const postTimeH6 = document.createElement("h6");
                         postTimeH6.textContent = board.createdTime;
