@@ -54,4 +54,8 @@ public class BoardService {
     public Page<BoardEntity> findAllByUserFollow(Set<Long> followedUserIds, Pageable pageable) {
         return boardRepository.findAllByUserIds(followedUserIds, pageable);
     }
+
+    public List<BoardEntity> findAllByUserId(Long userId) {
+        return boardRepository.findAllByUserId(userId);
+    }
 }

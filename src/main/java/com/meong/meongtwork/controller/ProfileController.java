@@ -1,6 +1,7 @@
 package com.meong.meongtwork.controller;
 
 import com.meong.meongtwork.dto.ProfileDto;
+import com.meong.meongtwork.entity.BoardEntity;
 import com.meong.meongtwork.entity.FollowEntity;
 import com.meong.meongtwork.entity.UserEntity;
 import com.meong.meongtwork.service.BoardService;
@@ -38,6 +39,11 @@ public class ProfileController {
 		model.addAttribute("following", followService.loadFollowerByUserId(userEntity.getId()));
 		// 나의 팔로워들의 아이디들을 꺼내기 위한 객체. 나를 팔로잉하는 객체들을 불러옴.
 		model.addAttribute("follower", followService.loadFollowingByUserId(userEntity.getId()));
+
+		List<BoardEntity> boards = boardService.findAllByUserId(userEntity.getId());
+
+		model.addAttribute("boards", boards);
+
 		return "profile/profile";
 	}
 
