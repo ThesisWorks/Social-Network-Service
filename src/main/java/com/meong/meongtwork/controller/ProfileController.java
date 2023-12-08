@@ -32,14 +32,20 @@ public class ProfileController {
 	}
 
 	@GetMapping("profile/{username}")
-	public String profile(@PathVariable("username") String username, Model model) {
+	public String profile(@PathVariable("username") String username, Model model, Principal principal) {
 		UserEntity userEntity = userDetailService.loadUserByUsername(username);
+		Long myId = userDetailService.loadUserByUsername(principal.getName()).getId();
 		model.addAttribute("profile", profileService.loadProfileByUserId(userEntity.getId()));
 		// 내가 팔로잉하는 아이디들을 꺼내기 위한 객체. 내가 팔로워인 객체를 불러옴.
 		model.addAttribute("following", followService.loadFollowerByUserId(userEntity.getId()));
 		// 나의 팔로워들의 아이디들을 꺼내기 위한 객체. 나를 팔로잉하는 객체들을 불러옴.
 		model.addAttribute("follower", followService.loadFollowingByUserId(userEntity.getId()));
-
+		// 사용자가 로그인한 상태인지 확인하여 권한에 따라 모델에 로그인 상태 정보를 전달
+		if (Objects.equals(myId, userEntity.getId())) {
+			model.addAttribute("button", true);
+		} else {
+			model.addAttribute("button", false);
+		}
 		List<BoardEntity> boards = boardService.findAllByUserId(userEntity.getId());
 
 		model.addAttribute("boards", boards);

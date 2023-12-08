@@ -21,14 +21,17 @@
                     <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
                     <button type="submit" class="btn profile-edit-btn">Edit profile</button>
                 </form>
+                <div th:if="${not button}">
                 <form action="/profile/follow" method="post">
                     <input type="hidden" name="id" th:value="${profile.getUser().getId()}">
                     <button type="submit" class="btn profile-follow-btn">Follow</button>
                 </form>
-
+                </div>
+                <div th:if="${button}">
                 <form action="/logout" method="get">
                     <button type="submit" class="btn profile-follow-btn" id="createButton">Logout</button>
                 </form>
+                </div>
 
                 <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
                                                                                           aria-hidden="true"></i>
