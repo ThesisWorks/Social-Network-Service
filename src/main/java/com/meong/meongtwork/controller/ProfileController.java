@@ -34,6 +34,10 @@ public class ProfileController {
 	public String profile(@PathVariable("username") String username, Model model) {
 		UserEntity userEntity = userDetailService.loadUserByUsername(username);
 		model.addAttribute("profile", profileService.loadProfileByUserId(userEntity.getId()));
+		// 내가 팔로잉하는 아이디들을 꺼내기 위한 객체. 내가 팔로워인 객체를 불러옴.
+		model.addAttribute("following", followService.loadFollowerByUserId(userEntity.getId()));
+		// 나의 팔로워들의 아이디들을 꺼내기 위한 객체. 나를 팔로잉하는 객체들을 불러옴.
+		model.addAttribute("follower", followService.loadFollowingByUserId(userEntity.getId()));
 		return "profile/profile";
 	}
 
@@ -52,7 +56,7 @@ public class ProfileController {
 	}
 
 	@PostMapping("/profile/follow")
-	public String follow(@ModelAttribute("id") Long profileId, Principal principal){
+	public String follow(@RequestParam("id") Long profileId, Principal principal){
 		UserEntity me = userDetailService.loadUserByUsername(principal.getName());
 		UserEntity profileUser = profileService.loadProfileByUserId(profileId).getUser();
 		if (!Objects.equals(profileId, me.getId()))
