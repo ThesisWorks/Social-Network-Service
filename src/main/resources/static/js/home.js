@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         cardDiv.appendChild(postDiv);
 
                         const postImg = document.createElement("img");
-                        postImg.src = "/images/base_board_image.png";
+                        postImg.src = board.imagePath;
                         postDiv.appendChild(postImg);
 
                         const iconsDiv = document.createElement("div");

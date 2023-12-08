@@ -51,8 +51,7 @@ public class BoardService {
         boardRepository.delete(boardEntity);
     }
 
-    public Page<BoardEntity> findAllByUserFollow(Long userId, Pageable pageable) {
-        Set<Long> userIds = Set.of(1L);
-        return boardRepository.findAllByUserIds(userIds, pageable);
+    public Page<BoardEntity> findAllByUserFollow(Set<Long> followedUserIds, Pageable pageable) {
+        return boardRepository.findAllByUserIds(followedUserIds, pageable);
     }
 }
