@@ -34,7 +34,7 @@ public class BoardController {
     @PostMapping("/board/post")
     public String postBoard(@ModelAttribute BoardDto boardDto, @RequestParam("file") MultipartFile file, Principal principal) {
         UserEntity user = userDetailService.loadUserByUsername(principal.getName());
-        String imagePath = null;
+        String imagePath = LocalFilePaths.DEFAULT_BOARD_IMAGE_PATH.getPath();
 
         if (!file.isEmpty()) {
             try {
