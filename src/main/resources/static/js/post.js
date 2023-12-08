@@ -9,3 +9,14 @@ document.addEventListener('click', function (event) {
         titleField.setAttribute('readonly', true);
     }
 });
+
+// image-preview.js
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        var output = document.getElementById('imagePreview');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src); // 메모리 누수 방지
+        }
+    });
+});

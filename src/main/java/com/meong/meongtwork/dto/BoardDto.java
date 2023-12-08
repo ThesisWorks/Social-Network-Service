@@ -13,4 +13,5 @@ public class BoardDto {
     private Long id;
     private String content;
     private String title;
+    private String imagePath;
 }

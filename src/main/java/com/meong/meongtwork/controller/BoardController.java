@@ -1,5 +1,6 @@
 package com.meong.meongtwork.controller;
 
+import com.meong.meongtwork.constant.LocalFilePaths;
 import com.meong.meongtwork.dto.BoardDto;
 import com.meong.meongtwork.entity.UserEntity;
 import com.meong.meongtwork.service.BoardService;
@@ -7,11 +8,13 @@ import com.meong.meongtwork.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 
 @Controller
@@ -29,9 +32,26 @@ public class BoardController {
     }
 
     @PostMapping("/board/post")
-    public String postBoard(@ModelAttribute BoardDto boardDto, Principal principal) {
+    public String postBoard(@ModelAttribute BoardDto boardDto, @RequestParam("file") MultipartFile file, Principal principal) {
         UserEntity user = userDetailService.loadUserByUsername(principal.getName());
+        String imagePath = null;
 
+        if (!file.isEmpty()) {
+            try {
+                // 파일 이름 가져오기
+                String imageName = file.getOriginalFilename();
+                // 저장할 파일 경로 설정
+                imagePath = LocalFilePaths.BOARD_IMAGE_DIR_PATH.getPath() + imageName;
+                Path path = Paths.get(imagePath);
+                // 파일 저장
+                Files.copy(file.getInputStream(), path);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "board/post";
+            }
+        }
+
+        boardDto.setImagePath("/" + imagePath);
         boardService.save(boardDto, user);
         return "home";
     }

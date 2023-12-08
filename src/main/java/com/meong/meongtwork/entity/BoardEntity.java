@@ -24,11 +24,16 @@ public class BoardEntity extends BaseEntity {
 	@Column(nullable = false)
 	private String title;
 
+	@Column(name = "image_path", nullable = true)
+	private String imagePath;
+
 	public static BoardEntity toSaveEntity(BoardDto boardDto, UserEntity user) {
 		BoardEntity boardEntity = new BoardEntity();
 		boardEntity.setContent(boardDto.getContent());
 		boardEntity.setUser(user);
 		boardEntity.setTitle(boardDto.getTitle());
+
+		boardEntity.setImagePath(boardDto.getImagePath());
 
 		return boardEntity;
 	}

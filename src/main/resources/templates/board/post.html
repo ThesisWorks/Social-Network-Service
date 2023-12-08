@@ -16,11 +16,13 @@
         <img src="/images/base_profile.png"/>
 
     </div>
-    <div class="post">
-        <img src="/images/base_board_image.png"/>
-    </div>
-    <div class="about-post">
-        <form action="/board/post" method="post" enctype="multipart/form-data">
+
+    <form action="/board/post" method="post" enctype="multipart/form-data">
+        <div class="post">
+            <img id="imagePreview" src="/images/base_board_add_image.png" onclick="document.getElementById('fileInput').click();"/>
+        </div>
+        <div class="about-post">
+            <input type="file" id="fileInput" name="file" style="display: none;"/>
             <input id="editableTitle" class="name_caption" type="text" placeholder="제목을 입력해주세요..." value=""
                    name="title">
             <textarea id="postContent" class="name_caption" rows="5" placeholder="게시글을 작성해주세요..."
@@ -28,8 +30,8 @@
             <button type="submit"
                     class="btn green small"
                     id="createButton" data-text="Create New"><span>Create New</span></button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 <script src="/js/post.js"></script>
 </body>
