@@ -26,8 +26,7 @@ public class ProfileService {
 	}
 
 	public void validateAuthorization(Long profileId, Long accessId){
-		ProfileEntity profileEntity = loadProfileByUserId(accessId);
-		if (!Objects.equals(profileEntity.getId(), profileId))
+		if (!Objects.equals(accessId, profileId))
 			throw new IllegalArgumentException("수정할 권한이 없습니다.");
 	}
 
